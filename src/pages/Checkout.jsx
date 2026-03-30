@@ -1,4 +1,26 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 const Checkout = () => {
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  if (isSuccess) {
+    return (
+      <div className="pt-48 pb-24 px-6 text-center max-w-xl mx-auto space-y-8 min-h-[60vh] flex flex-col justify-center">
+        <div className="w-24 h-24 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-12">
+          <span className="material-symbols-outlined text-on-primary-fixed text-5xl">check_circle</span>
+        </div>
+        <h1 className="text-5xl font-headline font-black tracking-tighter uppercase italic">Performance Secured.</h1>
+        <p className="text-on-surface-variant leading-relaxed">
+          Your order has been precision-logged. A verification manuscript has been sent to your digital inbox. Welcome to the elite.
+        </p>
+        <Link to="/" className="inline-block bg-primary text-on-primary-fixed px-12 py-5 font-headline font-black uppercase tracking-widest text-sm rounded-md hover:scale-105 active:scale-95 transition-all w-fit mx-auto">
+          Return to Dashboard
+        </Link>
+      </div>
+    )
+  }
+
   return (
     <main className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
       {/* Left Column: Checkout Form */}
@@ -73,7 +95,10 @@ const Checkout = () => {
         </section>
 
         <div className="pt-8">
-          <button className="w-full kinetic-gradient text-on-primary-fixed py-5 font-headline font-black uppercase tracking-tighter text-lg rounded-md shadow-xl shadow-primary-container/10 active:scale-[0.98] transition-all">
+          <button 
+            onClick={() => setIsSuccess(true)}
+            className="w-full kinetic-gradient text-on-primary-fixed py-5 font-headline font-black uppercase tracking-tighter text-lg rounded-md shadow-xl shadow-primary-container/10 active:scale-[0.98] transition-all"
+          >
             Complete Performance Purchase
           </button>
           <p className="text-center mt-6 text-[10px] text-on-surface-variant font-medium tracking-wide flex items-center justify-center gap-2">

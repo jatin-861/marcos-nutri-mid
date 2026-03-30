@@ -4,10 +4,10 @@ const NavBar = () => {
   const location = useLocation()
   
   const navLinks = [
-    { title: 'Pre-Workout', path: '#' },
+    { title: 'Pre-Workout', path: '/catalog' },
     { title: 'Protein', path: '/catalog' },
-    { title: 'Amino Acids', path: '#' },
-    { title: 'Recovery', path: '#' },
+    { title: 'Amino Acids', path: '/catalog' },
+    { title: 'Recovery', path: '/catalog' },
     { title: 'Supplements', path: '/catalog' },
   ]
 

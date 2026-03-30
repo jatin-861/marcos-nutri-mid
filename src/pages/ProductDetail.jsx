@@ -1,7 +1,22 @@
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 const ProductDetail = () => {
   const { id } = useParams()
+  const [selectedFlavor, setSelectedFlavor] = useState('Dutch Chocolate')
+  const [selectedSize, setSelectedSize] = useState('2.5 KG')
+  const [isAdded, setIsAdded] = useState(false)
+
+  const handleAddToCart = () => {
+    setIsAdded(true)
+    setTimeout(() => setIsAdded(false), 2000)
+  }
+
+  const flavors = ['Dutch Chocolate', 'Vanilla Bean', 'Cookies & Cream']
+  const sizes = [
+    { name: '1 KG', servings: '30 Servings' },
+    { name: '2.5 KG', servings: '75 Servings' }
+  ]
 
   return (
     <div className="pt-32 pb-24 max-w-7xl mx-auto px-8">
@@ -54,9 +69,19 @@ const ProductDetail = () => {
           <div className="mb-8">
             <h3 className="text-xs font-headline font-bold tracking-widest text-on-surface-variant uppercase mb-4">Select Flavor</h3>
             <div className="flex flex-wrap gap-3">
-              <button className="px-6 py-2 rounded-full border-2 border-primary-dim bg-primary-container/10 text-primary-dim text-xs font-black uppercase tracking-wider">Dutch Chocolate</button>
-              <button className="px-6 py-2 rounded-full border-2 border-outline-variant text-on-surface-variant hover:border-secondary-fixed hover:text-secondary-fixed transition-all text-xs font-black uppercase tracking-wider">Vanilla Bean</button>
-              <button className="px-6 py-2 rounded-full border-2 border-outline-variant text-on-surface-variant hover:border-secondary-fixed hover:text-secondary-fixed transition-all text-xs font-black uppercase tracking-wider">Cookies & Cream</button>
+              {flavors.map(flavor => (
+                <button 
+                  key={flavor}
+                  onClick={() => setSelectedFlavor(flavor)}
+                  className={`px-6 py-2 rounded-full border-2 transition-all text-xs font-black uppercase tracking-wider ${
+                    selectedFlavor === flavor 
+                      ? 'border-primary-dim bg-primary-container/10 text-primary-dim' 
+                      : 'border-outline-variant text-on-surface-variant hover:border-secondary-fixed hover:text-secondary-fixed'
+                  }`}
+                >
+                  {flavor}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -64,21 +89,42 @@ const ProductDetail = () => {
           <div className="mb-10">
             <h3 className="text-xs font-headline font-bold tracking-widest text-on-surface-variant uppercase mb-4">Select Size</h3>
             <div className="flex gap-4">
-              <button className="flex-1 py-4 border-2 border-outline-variant rounded-lg flex flex-col items-center hover:border-secondary-fixed transition-all">
-                <span className="text-sm font-headline font-black uppercase">1 KG</span>
-                <span className="text-[10px] text-on-surface-variant uppercase">30 Servings</span>
-              </button>
-              <button className="flex-1 py-4 border-2 border-primary-dim bg-primary-container/5 rounded-lg flex flex-col items-center transition-all">
-                <span className="text-sm font-headline font-black uppercase text-primary-dim">2.5 KG</span>
-                <span className="text-[10px] text-primary-dim/70 uppercase">75 Servings</span>
-              </button>
+              {sizes.map(size => (
+                <button 
+                  key={size.name}
+                  onClick={() => setSelectedSize(size.name)}
+                  className={`flex-1 py-4 border-2 rounded-lg flex flex-col items-center transition-all ${
+                    selectedSize === size.name
+                      ? 'border-primary-dim bg-primary-container/5'
+                      : 'border-outline-variant hover:border-secondary-fixed'
+                  }`}
+                >
+                  <span className={`text-sm font-headline font-black uppercase ${selectedSize === size.name ? 'text-primary-dim' : ''}`}>
+                    {size.name}
+                  </span>
+                  <span className={`text-[10px] uppercase ${selectedSize === size.name ? 'text-primary-dim/70' : 'text-on-surface-variant'}`}>
+                    {size.servings}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
 
-          <Link to="/checkout" className="kinetic-gradient w-full py-5 rounded-md text-on-primary-fixed font-headline font-black uppercase tracking-widest text-sm shadow-xl shadow-primary-container/10 active:scale-[0.98] transition-all flex items-center justify-center gap-3">
-            <span className="material-symbols-outlined">shopping_bag</span>
-            Add to Cart
-          </Link>
+          <div className="flex flex-col gap-4">
+            <button 
+              onClick={handleAddToCart}
+              className="gradient-cta w-full py-5 rounded-md text-on-primary-fixed font-headline font-black uppercase tracking-widest text-sm shadow-xl shadow-primary-container/10 active:scale-[0.98] transition-all flex items-center justify-center gap-3"
+            >
+              <span className="material-symbols-outlined">shopping_bag</span>
+              {isAdded ? 'Added to Cart!' : 'Add to Cart'}
+            </button>
+            
+            {isAdded && (
+              <Link to="/checkout" className="text-center text-primary-dim font-headline font-black uppercase text-xs tracking-widest hover:underline">
+                Go to Checkout
+              </Link>
+            )}
+          </div>
 
           <div className="mt-8 grid grid-cols-3 gap-4 py-8 border-y border-outline-variant/20">
             {[

@@ -27,9 +27,9 @@ const Home = () => {
               <Link to="/catalog" className="bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-headline font-black uppercase px-10 py-5 rounded-md tracking-widest text-sm hover:scale-105 transition-transform active:scale-95 text-center">
                 Shop All
               </Link>
-              <button className="border border-outline-variant/30 text-on-surface font-headline font-black uppercase px-10 py-5 rounded-md tracking-widest text-sm hover:bg-surface-container transition-colors">
+              <Link to="/catalog" className="border border-outline-variant/30 text-on-surface font-headline font-black uppercase px-10 py-5 rounded-md tracking-widest text-sm hover:bg-surface-container transition-colors flex items-center justify-center">
                 The Science
-              </button>
+              </Link>
             </div>
           </div>
           

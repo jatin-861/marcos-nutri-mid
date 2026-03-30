@@ -15,9 +15,9 @@ const Footer = () => {
           <h6 className="text-white font-headline font-black uppercase text-xs tracking-widest mb-8">Navigation</h6>
           <ul className="space-y-4">
             <li><Link className="text-zinc-500 hover:text-zinc-100 transition-colors underline-offset-4 font-body text-sm hover:underline decoration-[#D4FF00]" to="/catalog">Shop All</Link></li>
-            <li><Link className="text-zinc-500 hover:text-zinc-100 transition-colors underline-offset-4 font-body text-sm hover:underline decoration-[#D4FF00]" to="#">The Science</Link></li>
-            <li><Link className="text-zinc-500 hover:text-zinc-100 transition-colors underline-offset-4 font-body text-sm hover:underline decoration-[#D4FF00]" to="#">Lab Reports</Link></li>
-            <li><Link className="text-zinc-500 hover:text-zinc-100 transition-colors underline-offset-4 font-body text-sm hover:underline decoration-[#D4FF00]" to="#">Ambassadors</Link></li>
+            <li><Link className="text-zinc-500 hover:text-zinc-100 transition-colors underline-offset-4 font-body text-sm hover:underline decoration-[#D4FF00]" to="/catalog">The Science</Link></li>
+            <li><Link className="text-zinc-500 hover:text-zinc-100 transition-colors underline-offset-4 font-body text-sm hover:underline decoration-[#D4FF00]" to="/catalog">Lab Reports</Link></li>
+            <li><Link className="text-zinc-500 hover:text-zinc-100 transition-colors underline-offset-4 font-body text-sm hover:underline decoration-[#D4FF00]" to="/catalog">Ambassadors</Link></li>
           </ul>
         </div>
         
